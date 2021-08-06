@@ -6,6 +6,8 @@ import scala.collection.mutable
 
 case class InvenUnit(itemId : Int, count : Int, maxStack: Int)
 
+
+//TODO : Monad 사용하여 에러처리 할 것
 class InventoryRef(var inventory : mutable.Map[Int/*ItemID*/, InvenUnit]) {
   var maxCount = 5
 
