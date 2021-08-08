@@ -37,4 +37,14 @@ class CookieTest extends AnyFlatSpec {
     val newCookie = CookieManager.skillLevelUp(cookie, 1)
     assert(newCookie.skillLevel == 2)
   }
+
+  "쿠키 매니저" should "영혼석 다 모이면 카드 생성 테스트" in {
+    val testCookie = Cookie(1, 1, 20, -1, 1, 19)
+
+    val newCookie = CookieManager.addSoulStone(testCookie, 1)
+    assert(newCookie.isRight)
+    newCookie.map { ckie =>
+      assert(ckie.grade == 0)
+    }
+  }
 }
