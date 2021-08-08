@@ -31,7 +31,7 @@ object CookieManager {
       .fromOption(upgradeMap.get(cookie.grade + 1), { s"Invalid Upgrade grade ${cookie.grade}"})
       .flatMap{ reqStone =>
         if(cookie.soulStone < reqStone) {
-          "Not enough soulstrong".asLeft
+          "Not enough soulstone".asLeft
         }
         else {
           Cookie(cookie.id, cookie.level, cookie.exp, cookie.grade + 1, cookie.skillLevel, cookie.soulStone - reqStone).asRight
