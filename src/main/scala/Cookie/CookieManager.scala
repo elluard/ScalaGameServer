@@ -26,6 +26,18 @@ object CookieManager {
     Cookie(cookie.id, cookie.level, cookie.exp, cookie.grade, cookie.skillLevel + lvCount, cookie.soulStone)
   }
 
+  def addSoulStone(cookie: Cookie, stoneCount : Int)  : Either[String, Cookie] = {
+    Either.fromOption(upgradeMap.get(1), { s"Invalid Upgrade grade ${cookie.grade}"})
+      .map{ reqStone =>
+        if(cookie.grade == -1 && cookie.soulStone + stoneCount >= reqStone) {
+          Cookie(cookie.id, 1, cookie.exp, 0, 1, cookie.soulStone + stoneCount - reqStone )
+        }
+        else {
+          Cookie(cookie.id, 1, cookie.exp, -1, 1, cookie.soulStone + stoneCount)
+        }
+      }
+  }
+
   def upgrade(cookie : Cookie) : Either[String, Cookie] = {
     Either
       .fromOption(upgradeMap.get(cookie.grade + 1), { s"Invalid Upgrade grade ${cookie.grade}"})
