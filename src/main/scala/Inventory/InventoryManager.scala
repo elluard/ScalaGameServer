@@ -1,9 +1,6 @@
 package Inventory
 
 import Items._
-
-import cats.MonadError
-import cats.instances.either
 import cats.syntax.either._
 
 case class InvenUnit(itemId : Int, count : Int, maxStack: Int)
